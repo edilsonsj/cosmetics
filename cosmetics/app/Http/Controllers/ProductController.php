@@ -46,8 +46,10 @@ class ProductController extends Controller
         return redirect('/');
     }
 
-    public function show () {
+    public function show ($id) {
 
-        return view('/products/show');
+        $product = Product::findOrFail($id);
+
+        return view('products.show', ['product'=>$product]);
     }
 }
