@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('product_name');
             $table->integer('product_qty');
             $table->text('product_description');
-            $table->json('product_category');
+            $table->string('product_category');
             $table->float('product_price');
             $table->timestamps();
         });
