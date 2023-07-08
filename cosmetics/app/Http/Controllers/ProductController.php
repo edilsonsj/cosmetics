@@ -52,4 +52,38 @@ class ProductController extends Controller
 
         return view('products.show', ['product'=>$product]);
     }
+
+
+    public function edit ($id) {
+
+        $product = Product::findOrFail($id);
+        return view('products.edit', compact('product'));
+    }
+
+    public function update (Request $request){
+        
+        $data = $request->all();
+
+
+        if ($request->hasFile('product_image_path') && $request->file('product_image_path')->isValid()) {
+            
+            $request_image = $request->product_image_path;
+            $extension = $request_image -> extension();
+            $image_name = md5($request_image -> getClientOriginalName() . strtotime("now")) . "." . $extension;
+            $request_image -> move(public_path('img/products'), $image_name);
+
+            $data['product_image_path'] = $image_name;
+        }
+
+        Product::findOrFail($request->id)->update($data);
+        
+        return redirect('/');
+    }
+
+    public function manage () {
+
+        $products = Product::all();
+        return view('manage', ['products'=>$products]);
+
+    }
 }

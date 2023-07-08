@@ -1,26 +1,17 @@
 @extends('layouts.main')
 
-@section('title', 'Catálogo')
+@section('title', 'Gerenciar produtos')
 
 @section('content')
 
-    @if(session()->has('data'))
-    <p>
-        @foreach(session('data') as $item)
-            {{ $item }}
-            <br>
-        @endforeach
-    </p>
-    @endif
-
+    <h1>Tela de Gerenciamento de Produto</h1>
 
     @foreach ($products as $product)
-        <p style="border: 1px solid grey; padding: 5px">
+        <h2 style="border: 1px solid grey; padding: 5px">
             <img src="img/products/{{$product->product_image_path}}" alt="" style="width:50px">
-            <br>
             Produto: <a href="/products/{{$product->id}}">{{ $product -> product_name }} </a>
             <span>/ Preço: {{ $product->product_price }} </span>
-        </p>
+        </h2>
 
     @endforeach
 

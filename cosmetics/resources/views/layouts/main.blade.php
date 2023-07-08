@@ -37,7 +37,7 @@ li a:hover:not(.active) {
 <ul>
   <li><a href="/">Home</a></li>
   <li><a href="/products/create">Cadastrar Produto</a></li>
-  <li><a href="#manage">Gerenciar Produtos</a></li>
+  <li><a href="/manage">Gerenciar Produtos</a></li>
   <li style="float:right"><a class="active" href="#about">About</a></li>
 </ul>
 
