@@ -87,4 +87,11 @@ class ProductController extends Controller
         return view('products.manage', ['products' => $products]);
 
     }
+
+    public function destroy ($id) {
+
+        Product::findOrFail($id)->delete();
+        return redirect('/products/manage')->with('msg', 'Produto deletado com sucesso.');
+
+    }
 }
