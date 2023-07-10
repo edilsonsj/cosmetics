@@ -18,10 +18,6 @@ class FillUsersTable extends Migration
         for ($i = 0; $i < 100; $i++) {
             DB::table('users')->insert([
                 'name' => $faker->name,
-                'taxID' => $faker->randomNumber(5),
-                'address' => $faker->address,
-                'birth_date' => $faker->date,
-                'phone_number' => $faker->phoneNumber,
                 'email' => $faker->unique()->email,
                 'email_verified_at' => now(),
                 'password' => bcrypt('password'),

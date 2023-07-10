@@ -4,8 +4,6 @@
 
 @section('content')
 
-    
-
     <h1>Tela de Gerenciamento de produto</h1>
 
     @foreach ($products as $product)
