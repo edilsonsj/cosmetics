@@ -4,14 +4,7 @@
 
 @section('content')
 
-    @if(session()->has('data'))
-    <p>
-        @foreach(session('data') as $item)
-            {{ $item }}
-            <br>
-        @endforeach
-    </p>
-    @endif
+    <h1>Tela inicial</h1>
 
 
     @foreach ($products as $product)

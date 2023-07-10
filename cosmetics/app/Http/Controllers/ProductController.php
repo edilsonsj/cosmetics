@@ -7,14 +7,16 @@ use App\Models\Product;
 
 class ProductController extends Controller
 {
-
+    
     public function index () {
-
+        
         $products = Product::all();
-
+        
         return view('welcome', ['products' => $products]);
     }
-
+    
+    
+    
     public function create () {
 
         return view('products.create');
@@ -37,7 +39,7 @@ class ProductController extends Controller
             $extension = $request_image -> extension();
             $image_name = md5($request_image -> getClientOriginalName() . strtotime("now")) . "." . $extension;
             $request_image -> move(public_path('img/products'), $image_name);
-
+            
             $product -> product_image_path = $image_name;
         }
 
@@ -52,10 +54,10 @@ class ProductController extends Controller
 
         return view('products.show', ['product'=>$product]);
     }
-
-
+    
+    
     public function edit ($id) {
-
+        
         $product = Product::findOrFail($id);
         return view('products.edit', compact('product'));
     }
@@ -81,9 +83,8 @@ class ProductController extends Controller
     }
 
     public function manage () {
-
         $products = Product::all();
-        return view('manage', ['products'=>$products]);
+        return view('products.manage', ['products' => $products]);
 
     }
 }
