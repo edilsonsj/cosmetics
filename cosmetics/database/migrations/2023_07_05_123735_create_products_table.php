@@ -18,6 +18,7 @@ return new class extends Migration
             $table->text('product_description');
             $table->string('product_category');
             $table->float('product_price');
+            $table->string('product_image_path');
             $table->timestamps();
         });
     }

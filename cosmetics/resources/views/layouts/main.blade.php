@@ -29,6 +29,12 @@ li a:hover:not(.active) {
 
 .active {
   background-color: #04AA6D;
+
+}
+.msg {
+  background: green;
+  color: greenyellow;
+  padding: 5px;
 }
 </style>
 </head>
@@ -40,6 +46,10 @@ li a:hover:not(.active) {
   <li><a href="/products/manage">Gerenciar Produtos</a></li>
   <li style="float:right"><a class="active" href="test2">test</a></li>
 </ul>
+
+@if (session('msg'))
+    <h2 class="msg">{{session('msg')}}</h2>
+@endif
 
 @yield('content')
 

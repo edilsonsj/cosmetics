@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('products', function (Blueprint $table) {
-            $table->string('product_image_path');
+        Schema::table('users', function (Blueprint $table) {
+            $table->bigInteger('taxID')->nullable()->unique()->after('name');
         });
     }
 
@@ -21,8 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('products', function (Blueprint $table) {
-            $table->dropColumn('product_image_path');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('taxID');
         });
     }
 };

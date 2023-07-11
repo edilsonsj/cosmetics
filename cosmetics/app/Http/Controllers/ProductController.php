@@ -45,7 +45,7 @@ class ProductController extends Controller
 
         $product->save();
         
-        return redirect('/');
+        return redirect('/products/manage')->with('msg', 'Produto cadastrado com sucesso');
     }
 
     public function show ($id) {
@@ -79,7 +79,7 @@ class ProductController extends Controller
 
         Product::findOrFail($request->id)->update($data);
         
-        return redirect('/');
+        return redirect('/products/manage')->with('msg', 'Produto alterado com sucesso');
     }
 
     public function manage () {

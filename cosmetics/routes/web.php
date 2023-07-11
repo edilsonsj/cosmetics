@@ -30,6 +30,7 @@ Route::get('/products/edit/{id}', [ProductController::class, 'edit']);
 Route::put('/products/update/{id}', [ProductController::class, 'update']);
 
 Route::delete('/products/{id}', [ProductController::class, 'destroy']);
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
