@@ -42,9 +42,20 @@ li a:hover:not(.active) {
 
 <ul>
   <li><a href="/">Home</a></li>
-  <li><a href="/products/create">Cadastrar Produto</a></li>
-  <li><a href="/products/manage">Gerenciar Produtos</a></li>
-  <li style="float:right"><a class="active" href="test2">test</a></li>
+
+  @auth
+
+    <li><a href="/products/create">Cadastrar Produto</a></li>
+    <li><a href="/products/manage">Gerenciar Produtos</a></li>
+      
+  @endauth
+
+  @guest
+
+    <li style="float:right" class="active"><a href="/register">Fazer cadastro</a></li>
+    <li style="float:right" ><a href="/login">Entrar</a></li>
+    
+  @endguest
 </ul>
 
 @if (session('msg'))

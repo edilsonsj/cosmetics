@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\AdminController;
 
 Route::get('/', [ProductController::class, 'index']);
 
@@ -30,6 +31,8 @@ Route::get('/products/edit/{id}', [ProductController::class, 'edit']);
 Route::put('/products/update/{id}', [ProductController::class, 'update']);
 
 Route::delete('/products/{id}', [ProductController::class, 'destroy']);
+
+Route::get('/products/admin/dashboard', [AdminController::class, 'index']);
 
 Route::middleware([
     'auth:sanctum',
