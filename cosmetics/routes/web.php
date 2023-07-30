@@ -24,7 +24,7 @@ Route::post('/products', [ProductController::class, 'store']);
 
 Route::get('/products/{category?}', [ProductController::class, 'index'])->name('products.index');
 
-Route::get('/products/manage', [ProductController::class, 'manage']);
+Route::get('/products/admin/manage', [ProductController::class, 'manage']);
 
 Route::get('/products/{id}', [ProductController::class, 'show']);
 

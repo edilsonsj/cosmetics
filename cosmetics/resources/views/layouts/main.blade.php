@@ -66,5 +66,3 @@ li a:hover:not(.active) {
 
 </body>
 </html>
-
-

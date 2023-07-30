@@ -98,7 +98,7 @@ class ProductController extends Controller
     public function manage()
     {
         $products = Product::all();
-        return view('products.manage', ['products' => $products]);
+        return view('products.admin.manage', ['products' => $products]);
     }
 
     public function destroy($id)
