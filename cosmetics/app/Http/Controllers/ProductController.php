@@ -105,6 +105,6 @@ class ProductController extends Controller
     {
 
         Product::findOrFail($id)->delete();
-        return redirect('/products/manage')->with('msg', 'Produto deletado com sucesso.');
+        return redirect('/products/admin/manage')->with('msg', 'Produto deletado com sucesso.');
     }
 }

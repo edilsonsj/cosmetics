@@ -3,8 +3,10 @@
     <head>
         <meta charset="UTF-8">
         <h1>
-            <span class="cor1"> Catálogo </span>
-            <span class="cor2"> Online </span>
+            <a href="/">            
+                <span class="cor1"> Catálogo </span>
+                <span class="cor2"> Online </span>
+            </a>
         </h1>
         <title>Cadastro</title>
         <style>
