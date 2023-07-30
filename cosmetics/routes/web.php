@@ -22,6 +22,8 @@ Route::get('/products/create', [ProductController::class, 'create']);
 
 Route::post('/products', [ProductController::class, 'store']);
 
+Route::get('/products/{category?}', [ProductController::class, 'index'])->name('products.index');
+
 Route::get('/products/manage', [ProductController::class, 'manage']);
 
 Route::get('/products/{id}', [ProductController::class, 'show']);
@@ -33,6 +35,8 @@ Route::put('/products/update/{id}', [ProductController::class, 'update']);
 Route::delete('/products/{id}', [ProductController::class, 'destroy']);
 
 Route::get('/products/admin/dashboard', [AdminController::class, 'index']);
+
+
 
 Route::middleware([
     'auth:sanctum',

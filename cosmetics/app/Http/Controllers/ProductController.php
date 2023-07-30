@@ -4,15 +4,25 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use Illuminate\Support\Facades\DB;
+
 
 class ProductController extends Controller
 {
 
-    public function index()
+    public function index($category = null)
     {
-        $products = Product::all();
+        $query = Product::query();
 
-        return view('welcome', ['products' => $products]);
+        // Se houver categoria selecionada, filtre os produtos por essa categoria
+        if ($category) {
+            $query->where('product_category', $category);
+        }
+
+        $products = $query->get();
+        $categories = DB::table('products')->select('product_category')->distinct()->get();
+
+        return view('welcome', ['products' => $products, 'categories' => $categories]);
     }
 
 

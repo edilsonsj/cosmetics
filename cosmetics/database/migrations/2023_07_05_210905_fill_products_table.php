@@ -15,12 +15,23 @@ class FillProductsTable extends Migration
     {
         $faker = Faker::create();
 
+        // Array com as 6 categorias disponíveis
+        $categories = [
+            'Maquiagem',
+            'Cuidados com a pele',
+            'Cuidados com o cabelo',
+            'Perfumes e fragrâncias',
+            'Produtos para banho e corpo',
+            'Unhas e esmaltes',
+            'Acessórios de beleza',
+        ];
+        
         for ($i = 0; $i < 20; $i++) {
             DB::table('products')->insert([
                 'product_name' => $faker->word,
                 'product_qty' => $faker->randomNumber(2),
                 'product_description' => $faker->sentence,
-                'product_category' => json_encode([$faker->word, $faker->word]),
+                'product_category' => $faker->randomElement($categories), // Escolher uma categoria aleatoriamente
                 'product_price' => $faker->randomFloat(2, 10, 100),
                 'product_image_path' => 'bd4b039ea9de88151f77958bb54c80aa.png',
                 'created_at' => now(),
