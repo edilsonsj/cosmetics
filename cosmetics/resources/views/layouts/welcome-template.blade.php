@@ -165,7 +165,7 @@ header {
         @auth
           <a href="/products/create">Cadastrar produto</a>
           <a href="/products/admin/manage">Gerenciar Produtos</a>
-          <a href="#"><i class='bx bx-cart'></i></a>   
+          <a href="/cart"><i class='bx bx-cart'></i></a>   
         @endauth
       </div>
     </div>

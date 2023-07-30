@@ -107,4 +107,10 @@ class ProductController extends Controller
         Product::findOrFail($id)->delete();
         return redirect('/products/admin/manage')->with('msg', 'Produto deletado com sucesso.');
     }
+
+    public function cart () {
+        $products = Product::all();
+
+        return view('/cart', ['products' => $products]);
+    }
 }

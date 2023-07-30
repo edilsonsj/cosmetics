@@ -87,7 +87,9 @@
                             font-style: normal;
                             font-weight: 500;
                             line-height: normal;
-                            text-decoration: underline;">
+                            text-decoration: underline;" 
+                            
+                            class="btn-excluir">
                         </form>
                       </td>
                     </tr>
@@ -95,5 +97,18 @@
                 @endforeach
                 
               </table>
+
+              <script>
+                // Adicionar evento de clique aos botões de excluir para confirmar antes de enviar o formulário
+                const btnExcluir = document.querySelectorAll('.btn-excluir');
+                btnExcluir.forEach(btn => {
+                    btn.addEventListener('click', function(event) {
+                        event.preventDefault();
+                        if (confirm('Tem certeza que deseja excluir este produto?')) {
+                            this.form.submit();
+                        }
+                    });
+                });
+                </script>
         </body>
     </html>

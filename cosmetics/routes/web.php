@@ -36,6 +36,7 @@ Route::delete('/products/{id}', [ProductController::class, 'destroy']);
 
 Route::get('/products/admin/dashboard', [AdminController::class, 'index']);
 
+Route::get('/cart', [ProductController::class, 'cart']);
 
 
 Route::middleware([
