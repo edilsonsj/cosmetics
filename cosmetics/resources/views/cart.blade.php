@@ -62,8 +62,6 @@
         </style>
         <div style="width: 100%; height: 30px; background: #f1f1ff; border: 0.50px #EFEFEF solid"></div>
         <h2><b>Olá {{$user->name}}! Este são os produtos do seu carrinho</b></h2> 
-
-        {{$products}}
     </head>
     <body>
         <table border="1" >
@@ -91,8 +89,15 @@
                   <td><font color= #a6a6dd><b>R$ {{$product->product->product_price}}</b></font></td>
                   
                   <td>
-                    <input type="number" class="quantidade" min="1" max="" value="{{$product->qty}}" data-id="{{$product->id}}">
-                  </td>
+                    {{-- <form action="/atualizar-quantidade" method="POST">
+                        @csrf
+                        <input type="hidden" name="product_id" value="{{ $product->id }}">
+                        <input type="number" class="quantidade" name="quantity" min="0" max="{{$product->product->product_qty}}" value="{{ $product->qty }}">
+                        <button type="submit">Atualizar</button>
+                    </form> --}}
+                    {{$product->qty}}
+                </td>
+                
                   <td style="color: #002A48; font-weight: bold;">
                     R$ {{$subtotal}}
                   </td>
@@ -116,18 +121,7 @@
           <button class="btn-finalizar">Finalizar Compra</button>
 
           <script>
-              // Adicionar evento de clique aos botões de excluir para confirmar antes de enviar o formulário
-              const btnExcluir = document.querySelectorAll('.btn-excluir');
-              btnExcluir.forEach(btn => {
-                  btn.addEventListener('click', function(event) {
-                      event.preventDefault();
-                      if (confirm('Tem certeza que deseja excluir este produto?')) {
-                          this.form.submit();
-                      }
-                  });
-              });
-
-              // Adicionar evento de alteração aos campos de quantidade para atualizar a quantidade de cada produto
+                           // Adicionar evento de alteração aos campos de quantidade para atualizar a quantidade de cada produto
               const camposQuantidade = document.querySelectorAll('.quantidade');
               camposQuantidade.forEach(campo => {
                   campo.addEventListener('change', function() {
@@ -136,7 +130,7 @@
 
                       // Aqui você pode enviar uma requisição AJAX para atualizar a quantidade no backend,
                       // mas por simplicidade, vamos apenas exibir um alerta com as informações
-                      alert(`Produto ID ${productId} - Quantidade: ${quantidade}`);
+                      //alert(`Produto ID ${productId} - Quantidade: ${quantidade}`);
                   });
               });
 

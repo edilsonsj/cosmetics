@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\UserController;
 
 Route::get('/', [ProductController::class, 'index']);
 
@@ -39,12 +40,27 @@ Route::get('/products/admin/dashboard', [AdminController::class, 'index']);
 Route::get('/cart', [ProductController::class, 'cart']);
 
 
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::get('/welcome', function () {
+        return view('welcome');
+    })->name('welcome');
 });
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified'
+])->group(function () {
+    Route::get('/welcome', function () {
+        return view('welcome');
+    })->name('welcome');
+});
+
+Route::post('/atualizar-quantidade', [ProductController::class, 'updateQuantity']);
+
+Route::get('/dashboard', [UserController::class, 'dashboard']);

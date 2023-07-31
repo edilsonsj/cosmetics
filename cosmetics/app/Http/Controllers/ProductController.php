@@ -116,4 +116,6 @@ class ProductController extends Controller
 
         return view('cart', ['products' => $products, 'user' => $user]);
     }
+
+    
 }
