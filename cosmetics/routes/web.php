@@ -64,3 +64,6 @@ Route::middleware([
 Route::post('/atualizar-quantidade', [ProductController::class, 'updateQuantity']);
 
 Route::get('/dashboard', [UserController::class, 'dashboard']);
+
+Route::post('finalize-order', [ProductController::class, 'finalizeOrder'])->name('finalize.order');
+

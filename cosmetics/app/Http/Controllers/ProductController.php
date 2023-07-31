@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use Illuminate\Support\Facades\DB;
 use App\Models\Cart;
-
+use App\Models\Order;
+use App\Models\OrderProduct;
 
 class ProductController extends Controller
 {
@@ -117,5 +118,36 @@ class ProductController extends Controller
         return view('cart', ['products' => $products, 'user' => $user]);
     }
 
-    
+    public function finalizeOrder(Request $request)
+    {
+        // Verificar se o usuário está autenticado
+        if (!auth()->check()) {
+            return redirect()->route('login')->with('error', 'Você precisa estar logado para finalizar a compra.');
+        }
+
+        // Obter o ID do usuário autenticado
+        $user_id = auth()->user()->id;
+
+        // Criar o pedido (registro na tabela 'orders')
+        $order = new Order();
+        $order->user_id = $user_id;
+        $order->save();
+
+        // Obter o carrinho do usuário
+        $cart_items = Cart::where('user_id', $user_id)->get();
+
+        // Inserir os produtos do carrinho como itens do pedido (registros na tabela 'order_products')
+        foreach ($cart_items as $item) {
+            $order_product = new OrderProduct();
+            $order_product->order_id = $order->id;
+            $order_product->product_id = $item->product_id;
+            $order_product->sale_price = $item->product->product_price; // Pode ser necessário ajustar o nome do atributo se for diferente
+            $order_product->save();
+        }
+
+        // Limpar o carrinho do usuário após a finalização do pedido
+        Cart::where('user_id', $user_id)->delete();
+
+        return redirect('/')->with('success', 'Compra finalizada com sucesso!');
+    }
 }

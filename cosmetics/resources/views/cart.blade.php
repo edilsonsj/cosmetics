@@ -118,7 +118,11 @@
           </table>
 
           <!-- Botão "Finalizar Compra" -->
-          <button class="btn-finalizar">Finalizar Compra</button>
+          {{-- <button class="btn-finalizar">Finalizar Compra</button> --}}
+            <form action="{{ route('finalize.order') }}" method="post">
+                @csrf
+                <button type="submit" class="btn-finalizar">Fazer pedido</button>
+            </form>
 
           <script>
                            // Adicionar evento de alteração aos campos de quantidade para atualizar a quantidade de cada produto
@@ -135,11 +139,11 @@
               });
 
               // Evento de clique no botão "Finalizar Compra"
-              const btnFinalizar = document.querySelector('.btn-finalizar');
-              btnFinalizar.addEventListener('click', function() {
-                  alert('Finalizando a compra...');
-                  // Aqui você pode adicionar a lógica para finalizar a compra, enviar os dados ao backend, etc.
-              });
+              //const btnFinalizar = document.querySelector('.btn-finalizar');
+              //btnFinalizar.addEventListener('click', function() {
+              //    alert('Finalizando a compra...');
+              //    // Aqui você pode adicionar a lógica para finalizar a compra, enviar os dados ao backend, etc.
+              //});
           </script>
     </body>
 </html>
