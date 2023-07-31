@@ -33,7 +33,7 @@ class FillProductsTable extends Migration
                 'product_description' => $faker->sentence,
                 'product_category' => $faker->randomElement($categories), // Escolher uma categoria aleatoriamente
                 'product_price' => $faker->randomFloat(2, 10, 100),
-                'product_image_path' => 'bd4b039ea9de88151f77958bb54c80aa.png',
+                'product_image_path' => 'c6e9182d0dbd0568699a9006b0e08129.png',
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);
