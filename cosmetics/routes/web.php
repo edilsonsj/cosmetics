@@ -67,3 +67,4 @@ Route::get('/dashboard', [UserController::class, 'dashboard']);
 
 Route::post('finalize-order', [ProductController::class, 'finalizeOrder'])->name('finalize.order');
 
+Route::post('add-to-cart', [ProductController::class, 'addToCart'])->name('products.addToCart');
