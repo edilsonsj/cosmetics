@@ -57,7 +57,7 @@ class ProductController extends Controller
 
         $product->save();
 
-        return redirect('/products/manage')->with('msg', 'Produto cadastrado com sucesso');
+        return redirect('/products/admin/manage')->with('msg', 'Produto cadastrado com sucesso');
     }
 
     public function show($id)
@@ -148,6 +148,6 @@ class ProductController extends Controller
         // Limpar o carrinho do usuário após a finalização do pedido
         Cart::where('user_id', $user_id)->delete();
 
-        return redirect('/')->with('success', 'Compra finalizada com sucesso!');
+        return redirect('/')->with('msg', 'Pedido realizado com sucesso!');
     }
 }
