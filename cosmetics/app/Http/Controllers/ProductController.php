@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use Illuminate\Support\Facades\DB;
+use App\Models\Cart;
 
 
 class ProductController extends Controller
@@ -108,9 +109,11 @@ class ProductController extends Controller
         return redirect('/products/admin/manage')->with('msg', 'Produto deletado com sucesso.');
     }
 
-    public function cart () {
-        $products = Product::all();
+    public function cart()
+    {
+        $user = auth()->user();
+        $products = Cart::where('user_id', $user->id)->with('product')->get();
 
-        return view('/cart', ['products' => $products]);
+        return view('cart', ['products' => $products, 'user' => $user]);
     }
 }

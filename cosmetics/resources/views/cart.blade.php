@@ -61,7 +61,9 @@
             }
         </style>
         <div style="width: 100%; height: 30px; background: #f1f1ff; border: 0.50px #EFEFEF solid"></div>
-        <h2><b>GERENCIAMENTO DE PRODUTOS</b></h2> 
+        <h2><b>Olá {{$user->name}}! Este são os produtos do seu carrinho</b></h2> 
+
+        {{$products}}
     </head>
     <body>
         <table border="1" >
@@ -70,34 +72,44 @@
               <td><font color="white"><b>Imagem</b></font></td>
               <td><font color="white"><b>Nome</b></font></td>
               <td><font color="white"><b>Preço</b></font></td>
-              <td><font color="white"><b>Estoque</b></font></td> 
               <td><font color="white"><b>Quantidade</b></font></td>
-              <td><font color="white"><b>Ação</b></font></td>
+              <td><font color="white"><b>Total</b></font></td>
             </tr>
+                @php
+                    $total_price = 0;
+                @endphp
             @foreach ($products as $product)
-            
+
+                @php
+                    $subtotal = $product->product->product_price * $product->qty;
+                    $total_price += $subtotal;
+                @endphp
                 <tr>
-                  <td><font color= #a6a6dd>{{$product->id}}</font></td>
-                  <td><img src="/img/products/{{$product->product_image_path}}"  style="width: 5vw"></td>
-                  <td>{{$product->product_name}}</td>
-                  <td><font color= #a6a6dd><b>R$ {{$product->product_price}}</b></font></td>
-                  <td><font color= #a6a6dd>{{$product->product_qty}}</font></td>
+                  <td><font color= #a6a6dd>{{$product->product->id}}</font></td>
+                  <td><img src="img/products/{{$product->product->product_image_path}}"  style="width: 5vw"></td>
+                  <td>{{$product->product->product_name}}</td>
+                  <td><font color= #a6a6dd><b>R$ {{$product->product->product_price}}</b></font></td>
+                  
                   <td>
-                    <input type="number" class="quantidade" min="1" max="{{$product->product_qty}}" value="1" data-id="{{$product->id}}">
+                    <input type="number" class="quantidade" min="1" max="" value="{{$product->qty}}" data-id="{{$product->id}}">
                   </td>
-                  <td>
-                    <a href="/products/edit/{{$product->id}}">Editar</a>
-                    <br>
-                    <form action="/products/{{$product->id}}" method="post">
-                        @csrf
-                        @method('DELETE')
-                        <input type="submit" value="Excluir" class="btn-excluir">
-                    </form>
+                  <td style="color: #002A48; font-weight: bold;">
+                    R$ {{$subtotal}}
                   </td>
+                  
                 </tr>
 
             @endforeach
-            
+            <tr>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>@php
+                    echo $total_price;
+                @endphp</td>
+            </tr>
           </table>
 
           <!-- Botão "Finalizar Compra" -->

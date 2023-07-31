@@ -22,7 +22,7 @@ return new class extends Migration
             $productid = $this -> getRandomNumber(1, 20);
             $qty = $this -> getRandomNumber(1, 5);
 
-            DB::table('cart')->insert([
+            DB::table('carts')->insert([
                 'user_id' => $userid,
                 'product_id' => $productid,
                 'qty' => $qty,
