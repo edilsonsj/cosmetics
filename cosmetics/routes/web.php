@@ -51,15 +51,6 @@ Route::middleware([
     })->name('welcome');
 });
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified'
-])->group(function () {
-    Route::get('/welcome', function () {
-        return view('welcome');
-    })->name('welcome');
-});
 
 Route::post('/atualizar-quantidade', [ProductController::class, 'updateQuantity']);
 
@@ -68,3 +59,7 @@ Route::get('/dashboard', [UserController::class, 'dashboard']);
 Route::post('finalize-order', [ProductController::class, 'finalizeOrder'])->name('finalize.order');
 
 Route::post('add-to-cart', [ProductController::class, 'addToCart'])->name('products.addToCart');
+
+Route::get('/products/admin/orders', [ProductController::class, 'orders']);
+
+Route::get('/my-orders', [UserController::class, 'orders']);

@@ -3,10 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\models\Order;
 
 class UserController extends Controller
 {
     public function dashboard () {
         return view('dashboard');
+    }
+
+    public function orders () {
+        $user_id = auth()->user()->id;
+        $orders = Order::where('user_id', $user_id)->with('products')->get();
+        return view('/my-orders', ['orders' => $orders]);
     }
 }

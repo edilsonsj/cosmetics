@@ -141,7 +141,7 @@ class ProductController extends Controller
             $order_product = new OrderProduct();
             $order_product->order_id = $order->id;
             $order_product->product_id = $item->product_id;
-            $order_product->sale_price = $item->product->product_price; 
+            $order_product->sale_price = $item->product->product_price;
             $order_product->save();
         }
 
@@ -156,10 +156,10 @@ class ProductController extends Controller
         $user_id = auth()->id();
         $product_id = $request->input('product_id');
         $quantity = $request->input('quantity');
-    
+
         // Verifica se o produto já está no carrinho do usuário
         $cartItem = Cart::where('user_id', $user_id)->where('product_id', $product_id)->first();
-    
+
         if ($cartItem) {
             // Se o produto já estiver no carrinho, atualiza a quantidade
             $cartItem->qty += $quantity;
@@ -172,8 +172,14 @@ class ProductController extends Controller
                 'qty' => $quantity,
             ]);
         }
-    
+
         // Redireciona de volta à página inicial com uma mensagem de sucesso
         return redirect()->route('products.index')->with('msg', 'Produto adicionado ao carrinho com sucesso!');
+    }
+
+    public function orders()
+    {
+        $orders = Order::all();
+        return view('products.admin.orders', ['orders'  => $orders]);
     }
 }
