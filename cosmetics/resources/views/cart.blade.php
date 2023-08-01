@@ -140,10 +140,13 @@
 
     <!-- Botão "Finalizar Compra" -->
     {{-- <button class="btn-finalizar">Finalizar Compra</button> --}}
+    @if ($total_price > 0)
+    
     <form action="{{ route('finalize.order') }}" method="post">
         @csrf
         <button type="submit" class="btn-finalizar">Fazer pedido</button>
     </form>
+    @endif
 
     <script>
         // Adicionar evento de alteração aos campos de quantidade para atualizar a quantidade de cada produto

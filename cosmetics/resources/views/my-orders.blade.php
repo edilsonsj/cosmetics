@@ -1,1 +1,3 @@
-<p>{{ $orders }}</p>
+@foreach ($orders as $order)
+    <p>{{$order}}</p>
+@endforeach
