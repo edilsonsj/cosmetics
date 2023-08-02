@@ -11,9 +11,12 @@ class Order extends Model
 
     protected $table = 'orders';
 
-    protected $filliable = ['user_id',];
+    protected $fillable = ['user_id'];
 
-    public function products() {
-        return $this->hasMany(OrderProduct::class, 'order_id');
+    public function products()
+    {
+        return $this->belongsToMany(Product::class, 'order_products', 'order_id', 'product_id')
+            ->select('products.*', 'order_products.sale_price')
+            ->withTimestamps();
     }
 }

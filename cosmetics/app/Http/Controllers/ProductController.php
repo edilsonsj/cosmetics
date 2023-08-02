@@ -16,7 +16,6 @@ class ProductController extends Controller
     {
         $query = Product::query();
 
-        // Se houver categoria selecionada, filtre os produtos por essa categoria
         if ($category) {
             $query->where('product_category', $category);
         }

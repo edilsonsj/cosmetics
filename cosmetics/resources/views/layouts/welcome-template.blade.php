@@ -176,6 +176,7 @@
                 @auth
                     <a href="/products/create">Cadastrar produto</a>
                     <a href="/products/admin/manage">Gerenciar Produtos</a>
+                    <a href="/my-orders">Meus Pedidos</a>
                     <a href="/user/profile">Minha Conta</a>
                     <a href="/cart"><i class='bx bx-cart'></i></a>
                 @endauth
