@@ -26,7 +26,7 @@ class UserController extends Controller
         foreach ($orders as $order) {
             $total_price = 0;
             foreach ($order->products as $product) {
-                $total_price += $product->pivot->sale_price;
+                $total_price += $product->sale_price;
             }
             $order->total_price = $total_price;
         }
