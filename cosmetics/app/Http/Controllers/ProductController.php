@@ -176,9 +176,4 @@ class ProductController extends Controller
         return redirect()->route('products.index')->with('msg', 'Produto adicionado ao carrinho com sucesso!');
     }
 
-    public function orders()
-    {
-        $orders = Order::all();
-        return view('products.admin.orders', ['orders'  => $orders]);
-    }
 }

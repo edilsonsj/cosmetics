@@ -60,6 +60,6 @@ Route::post('finalize-order', [ProductController::class, 'finalizeOrder'])->name
 
 Route::post('add-to-cart', [ProductController::class, 'addToCart'])->name('products.addToCart');
 
-Route::get('/products/admin/orders', [ProductController::class, 'orders']);
+Route::get('/products/admin/orders', [AdminController::class, 'orders']);
 
 Route::get('/my-orders', [UserController::class, 'orders']);
