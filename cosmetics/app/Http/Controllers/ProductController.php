@@ -130,6 +130,7 @@ class ProductController extends Controller
         // Criar o pedido (registro na tabela 'orders')
         $order = new Order();
         $order->user_id = $user_id;
+        $order->status = 'Processando';
         $order->save();
 
         // Obter o carrinho do usuário
