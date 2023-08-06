@@ -20,6 +20,13 @@ class Order extends Model
             ->withTimestamps();
     }
 
+    public function orderItems()
+    {
+        return $this->belongsToMany(Product::class, 'order_products', 'order_id', 'product_id')
+            ->withPivot('sale_price')
+            ->withTimestamps();
+    }
+
     public function user () {
         return $this->belongsTo(User::class);
     }
