@@ -60,9 +60,11 @@ Route::post('finalize-order', [ProductController::class, 'finalizeOrder'])->name
 
 Route::post('add-to-cart', [ProductController::class, 'addToCart'])->name('products.addToCart')->middleware('auth');
 
-Route::get('/products/admin/orders', [AdminController::class, 'orders']);
+Route::get('/products/admin/orders', [AdminController::class, 'orders'])->name('admin.orders');
 
-Route::get('/products/admin/orders/{id}', [AdminController::class, 'showOrderDetails'])->name('orders.show');
+Route::get('/products/admin/orders/{id}', [AdminController::class, 'orderDetails'])->name('admin.order.details');
+
+Route::post('/products/admin/orders/{id}/finalize', [AdminController::class, 'finalizeOrder'])->name('admin.order.finalize');
 
 Route::get('/my-orders', [UserController::class, 'orders']);
 
