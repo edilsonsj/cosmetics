@@ -4,12 +4,32 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Order;
+use App\Models\Product;
+use App\Models\OrderProduct;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
-    public function index()
+    public function dashboard()
     {
-        return view('products/admin/dashboard');
+        $reportData = DB::table('products')
+        ->select(
+            'products.id',
+            'products.product_image_path',
+            'products.product_name',
+            'products.product_price',
+            'products.product_qty',
+            DB::raw('COUNT(orders.id) as total_sales'),
+            DB::raw('SUM(order_products.sale_price) as total_revenue')
+        )
+        ->leftJoin('order_products', 'products.id', '=', 'order_products.product_id')
+        ->leftJoin('orders', 'order_products.order_id', '=', 'orders.id')
+        ->where('orders.status', '=', 'finalizado')
+        ->groupBy('products.id')
+        ->get();
+
+    return view('products.admin.dashboard', ['reportData' => $reportData]);
+
     }
 
     

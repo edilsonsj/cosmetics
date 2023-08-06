@@ -35,7 +35,7 @@ Route::put('/products/update/{id}', [ProductController::class, 'update']);
 
 Route::delete('/products/{id}', [ProductController::class, 'destroy']);
 
-Route::get('/products/admin/dashboard', [AdminController::class, 'index']);
+Route::get('/products/admin/dashboard', [AdminController::class, 'dashboard']);
 
 Route::get('/cart', [ProductController::class, 'cart'])->middleware('auth');
 
