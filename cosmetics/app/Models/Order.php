@@ -19,4 +19,8 @@ class Order extends Model
             ->select('products.*', 'order_products.sale_price')
             ->withTimestamps();
     }
+
+    public function user () {
+        return $this->belongsTo(User::class);
+    }
 }

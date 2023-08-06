@@ -14,7 +14,12 @@ class AdminController extends Controller
 
     public function orders()
     {
-        $orders = Order::all();
+        $orders = Order::with('user')->get();
         return view('products.admin.orders', ['orders'  => $orders]);
+    }
+
+    public function showOrderDetails ($id) {
+        $order = Order::findOrFail($id);
+        return view('products.admin.order-details', ['order' => $order]);
     }
 }

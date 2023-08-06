@@ -62,4 +62,8 @@ Route::post('add-to-cart', [ProductController::class, 'addToCart'])->name('produ
 
 Route::get('/products/admin/orders', [AdminController::class, 'orders']);
 
+Route::get('/products/admin/orders/{id}', [AdminController::class, 'showOrderDetails'])->name('orders.show');
+
 Route::get('/my-orders', [UserController::class, 'orders']);
+
+Route::get('/test', [UserController::class, 'test']);
