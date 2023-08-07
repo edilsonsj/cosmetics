@@ -173,9 +173,14 @@
                     <a href="/register">Cadastre-se</a>
                 @endguest
 
+
                 @auth
-                    <a href="/products/create">Cadastrar produto</a>
-                    <a href="/products/admin/manage">Gerenciar Produtos</a>
+                    @if (auth()->user()->role === \App\Models\User::ROLE_ADMIN)
+                        <a href="/products/create">Cadastrar produto</a>
+                        <a href="/products/admin/manage">Gerenciar Produtos</a>
+                        <a href="/products/admin/dashboard">Relatório</a>
+                        <a href="/products/admin/orders">Pedidos</a>
+                    @endif
                     <a href="/my-orders">Meus Pedidos</a>
                     <a href="/user/profile">Minha Conta</a>
                     <a href="/cart"><i class='bx bx-cart'></i></a>
@@ -193,11 +198,11 @@
         </nav>
         @if (session('msg'))
             <div class="msg"
-            style="background: green; color:greenyellow; border-radius:3px; width:100%; height: 30px; margin:5px;">
-            <p class="msg">{{ session('msg') }}</p>
+                style="background: green; color:greenyellow; border-radius:3px; width:100%; height: 30px; margin:5px;">
+                <p class="msg">{{ session('msg') }}</p>
         @endif
 
-        
+
         </div>
     </header>
 
