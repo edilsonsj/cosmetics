@@ -39,4 +39,9 @@ class UserController extends Controller
 
         return view('/my-orders', ['orders' => $orders]);
     }
+
+
+    public function accessDenied () {
+        return view('access-denied');
+    }
 }
