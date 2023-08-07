@@ -90,6 +90,9 @@
             </tr>
         </thead>
         <tbody>
+            @php
+                $total = 0;
+            @endphp
             @foreach ($reportData as $product)
                 <tr>
                     <td>{{ $product->id }}</td>
@@ -99,8 +102,25 @@
                     <td>{{ $product->product_qty }}</td>
                     <td>{{ $product->total_sales }}</td>
                     <td>R$ {{ $product->total_revenue }}</td>
+
+                    @php
+                        $total += $product->total_revenue;
+                    @endphp
                 </tr>
             @endforeach
+            <tr>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>
+                    @php
+                        echo  'R$ ' . $total;
+                    @endphp
+                </td>
+            </tr>
         </tbody>
     </table>
 </body>
