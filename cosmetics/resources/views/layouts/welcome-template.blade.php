@@ -6,122 +6,71 @@
 
     <title>@yield('title')</title>
     <style>
-        header {
-            padding: 10px 20px;
-        }
-
-        .navbar-top {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border-bottom: 1px solid #e9e9e9e7;
-            background: #FFF;
-            padding-bottom: 5px;
-        }
-
-        .logo {
-            color: #3734A9;
-            font-family: "Outfit", sans-serif;
-            font-size: 32px;
-            font-style: normal;
-            font-weight: 400;
-            line-height: 44.986px;
-            /* 140.582% */
-        }
-
-        .buttons a {
-            color: #3734A9;
-            font-family: "Jost", sans-serif;
-            font-size: 18px;
-            font-style: normal;
-            font-weight: 500;
-            line-height: normal;
-            text-decoration: none;
-            padding: 0 10px;
-        }
-
-        /* Optional: Style the buttons to look like actual buttons */
-        .buttons a {
-            background-color: #3734A9;
-            color: #f1f1ff;
-            border-radius: 4px;
-            padding: 8px 12px;
-            margin-left: 10px;
-        }
-
-        .buttons a:hover {
-            background-color: #645eb4;
-        }
-
-        .navbar-bottom {
-            display: flex;
-            justify-content: center;
-            border: 1px solid #EFEFEF;
-            background: #F1F1FF;
-            padding: 10px 0;
-        }
-
-        .navbar-bottom a {
-            color: #3734A9;
-            text-decoration: none;
-            font-size: 15px;
-            font-size: 15px;
-            font-family: 'Outfit', sans-serif;
-            font-weight: 500;
-            padding: 0 10px;
-        }
-
-
-
         @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@700&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@500;700&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap');
 
+        /* General styles */
         body {
             margin: 0;
             padding: 0;
-        }
-
-        .cor1 {
-            color: #3734A9;
-            font-size: 32px;
             font-family: 'Outfit', sans-serif;
-            font-weight: 400;
-            line-height: 44.99px;
-            word-wrap: "break-word";
         }
 
-        .cor2 {
-            color: #002A48;
-            font-size: 32px;
-            font-family: 'Outfit', sans-serif;
-            font-weight: 400;
-            line-height: 44.99px;
-            word-wrap: "break-word";
+        /* Header styles */
+        header {
+            padding: 10px 20px;
+            background: #FFF;
+            border-bottom: 1px solid #e9e9e9e7;
         }
 
-        .botao {
-            border-radius: 10px;
-            float: right;
-            margin-bottom: 15px;
-            font-weight: 400;
-            line-height: 25px;
-            word-wrap: "break-word";
-            position: flex;
-            right: 180px;
-            top: 30px;
-            background-color: #fff;
+        .navbar-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
             color: #3734A9;
-            font-family: Outfit;
+            font-size: 24px;
         }
 
+        .buttons {
+            display: flex;
+            align-items: center;
+        }
 
+        .buttons a {
+            color: #3734A9;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        /* Navigation styles */
+        .navbar-bottom {
+            display: flex;
+            justify-content: center;
+            background: #F1F1FF;
+            border: 1px solid #EFEFEF;
+            padding: 10px 0;
+            overflow-x: auto;
+        }
+
+        .navbar-bottom a {
+            color: #3734A9;
+            text-decoration: none;
+            font-size: 14px;
+            margin: 0 10px;
+            white-space: nowrap;
+        }
+
+        /* Gallery styles */
         .gallery {
             display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            grid-template-rows: repeat(5, auto);
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             grid-gap: 15px;
+            padding: 10px;
         }
 
         .gallery__img {
@@ -130,15 +79,13 @@
             border-radius: 5%;
         }
 
-        .gallery__comment {
-            font-size: 18px;
-            font-family: 'Outfit', sans-serif;
+        .gallery__caption {
+            margin-top: 10px;
+            font-size: 14px;
         }
 
         .gallery__price {
-            font-size: 18px;
-            font-family: "Jost", sans-serif;
-            font-size: 18px;
+            font-size: 14px;
             font-weight: bold;
         }
 
@@ -149,13 +96,32 @@
             border-radius: 5px;
             color: white;
             background-color: #3734A9;
-            font-family: "Jost", sans-serif;
-            font-size: 18px;
+            font-size: 14px;
         }
 
-        .gallery__button:hover {
-            background: #9491f1;
-            cursor: pointer;
+        /* Responsive media queries */
+        @media screen and (max-width: 768px) {
+            .buttons {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .buttons a {
+                margin: 5px 0;
+            }
+
+            .navbar-bottom {
+                flex-direction: row;
+                justify-content: flex-start;
+            }
+
+            .navbar-bottom a {
+                margin: 0 10px;
+            }
+
+            .gallery {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
         }
     </style>
 </head>
