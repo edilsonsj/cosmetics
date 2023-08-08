@@ -111,12 +111,6 @@
                 </td>
 
                 <td>
-                    {{-- <form action="/atualizar-quantidade" method="POST">
-                        @csrf
-                        <input type="hidden" name="product_id" value="{{ $product->id }}">
-                        <input type="number" class="quantidade" name="quantity" min="0" max="{{$product->product->product_qty}}" value="{{ $product->qty }}">
-                        <button type="submit">Atualizar</button>
-                    </form> --}}
                     {{ $product->qty }}
                 </td>
 
@@ -138,37 +132,18 @@
         </tr>
     </table>
 
-    <!-- Botão "Finalizar Compra" -->
-    {{-- <button class="btn-finalizar">Finalizar Compra</button> --}}
     @if ($total_price > 0)
-    
-    <form action="{{ route('finalize.order') }}" method="post">
-        @csrf
-        <button type="submit" class="btn-finalizar">Fazer pedido</button>
-    </form>
+        <form action="{{ route('finalize.order') }}" method="post">
+            @csrf
+
+            @foreach ($products as $product)
+                <input type="hidden" name="qty" value="{{ $product->qty }}">
+            @endforeach
+
+            <button type="submit" class="btn-finalizar">Fazer pedido</button>
+        </form>
     @endif
 
-    <script>
-        // Adicionar evento de alteração aos campos de quantidade para atualizar a quantidade de cada produto
-        const camposQuantidade = document.querySelectorAll('.quantidade');
-        camposQuantidade.forEach(campo => {
-            campo.addEventListener('change', function() {
-                const productId = this.dataset.id;
-                const quantidade = this.value;
-
-                // Aqui você pode enviar uma requisição AJAX para atualizar a quantidade no backend,
-                // mas por simplicidade, vamos apenas exibir um alerta com as informações
-                //alert(`Produto ID ${productId} - Quantidade: ${quantidade}`);
-            });
-        });
-
-        // Evento de clique no botão "Finalizar Compra"
-        //const btnFinalizar = document.querySelector('.btn-finalizar');
-        //btnFinalizar.addEventListener('click', function() {
-        //    alert('Finalizando a compra...');
-        //    // Aqui você pode adicionar a lógica para finalizar a compra, enviar os dados ao backend, etc.
-        //});
-    </script>
 </body>
 
 </html>

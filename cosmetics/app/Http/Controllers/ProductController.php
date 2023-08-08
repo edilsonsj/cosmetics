@@ -142,7 +142,15 @@ class ProductController extends Controller
             $order_product->order_id = $order->id;
             $order_product->product_id = $item->product_id;
             $order_product->sale_price = $item->product->product_price;
+            $order_product->qty = $request->qty;
             $order_product->save();
+
+            //atualiza qty na tabela products
+            $product = Product::findOrFail($order_product->product_id);
+            $currentProductQty = $product->product_qty;
+
+            $updatedQty = $currentProductQty - $item->qty;
+            $item->product->update(['product_qty'  => $updatedQty]);
         }
 
         // Limpar o carrinho do usuário após a finalização do pedido
