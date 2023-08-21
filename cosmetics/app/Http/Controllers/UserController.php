@@ -22,6 +22,12 @@ class UserController extends Controller
     {
         $user_id = auth()->user()->id;
 
+        $user_orders = DB::table('orders')
+            ->select(
+                'orders.id',
+                'orders.status'
+            )->get();
+
         $orders = Order::where('user_id', $user_id)
             ->with(['products' => function ($query) {
                 $query->join('products as product_details', 'product_details.id', '=', 'order_products.product_id')
@@ -37,7 +43,7 @@ class UserController extends Controller
             $order->total_price = $total_price;
         }
 
-        return view('/my-orders', ['orders' => $orders]);
+        return view('/my-orders', ['orders' => $orders], ['user_orders' => $user_orders]);
     }
 
 

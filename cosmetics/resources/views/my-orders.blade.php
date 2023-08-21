@@ -69,7 +69,7 @@
 </head>
 
 <body>
-    <p>{{ $orders }}</p>
+
     <table>
         <thead>
             <tr>
@@ -90,7 +90,7 @@
                     <td>
                         <ul>
                             @foreach ($order->products as $product)
-                                <li>{{ $product->product_name }} / R$ {{ $product->product_price }} / {{ $order->qty }}uni.</li>
+                                <li>{{ $product->product_name }}</li>
                             @endforeach
                         </ul>
                     </td>

@@ -70,6 +70,13 @@
     <h2><b>Olá {{ $user->name }}! Este são os produtos do seu carrinho</b></h2>
 </head>
 
+@if (session('msg'))
+    <div class="msg"
+        style="background: green; color:greenyellow; border-radius:3px; width:100%; height: 30px; margin:5px;">
+        <p class="msg">{{ session('msg') }}</p>
+    </div>
+@endif
+
 <body>
     <table border="1">
         <tr bgcolor=#a6a6dd>
@@ -90,6 +97,9 @@
             </td>
             <td>
                 <font color="white"><b>Total</b></font>
+            </td>
+            <td>
+                <font color="white"><b>Ação</b></font>
             </td>
         </tr>
         @php
@@ -116,6 +126,29 @@
 
                 <td style="color: #002A48; font-weight: bold;">
                     R$ {{ $subtotal }}
+                </td>
+                <td>
+                    <form action="/cart/{{ $product->product_id }}" method="post">
+                        @csrf
+                        @method('DELETE')
+                        <input type="submit" value="Excluir"
+                            style="appearance: none;
+                            -webkit-appearance: none;
+                            -moz-appearance: none;
+                            background-color: transparent;
+                            border: none;
+                            padding: 0;
+                            margin: 0;
+                            cursor: pointer;
+                            color: #ff4800;
+                            font-family: 'Outfit', sans-serif;
+                            font-size: 18px;
+                            font-style: normal;
+                            font-weight: 500;
+                            line-height: normal;
+                            text-decoration: underline;"
+                            class="btn-excluir">
+                    </form>
                 </td>
 
             </tr>
