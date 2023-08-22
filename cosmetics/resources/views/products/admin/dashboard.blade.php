@@ -6,7 +6,7 @@
             <span class="cor2"> Online </span></a>
     </h1>
     <meta charset="UTF-8">
-    <title>Relatório de Produtos</title>
+    <title>Relatório de Vendas dos Produtos</title>
     <!-- Importação das fontes do Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700&display=swap" rel="stylesheet">
@@ -76,7 +76,7 @@
     </style>
 </head>
 <body>
-    <h1>Relatório de Produtos</h1>
+    <h1>Relatório de Vendas dos Produtos</h1>
     <table>
         <thead>
             <tr>

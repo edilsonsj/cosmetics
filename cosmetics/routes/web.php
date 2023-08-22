@@ -29,6 +29,7 @@ Route::middleware(['web', 'admin'])->group(function () {
     
     Route::put('/products/update/{id}', [ProductController::class, 'update']);
 
+    Route::delete('/products/{id}', [ProductController::class, 'destroy']);
 });
 
 Route::get('/', [ProductController::class, 'index']);
@@ -42,8 +43,7 @@ Route::get('/products/{category?}', [ProductController::class, 'index'])->name('
 Route::get('/products/{id}', [ProductController::class, 'show']);
 
 
-
-Route::delete('/products/{id}', [ProductController::class, 'destroy']);
+Route::delete('/cart/{product_id}', [ProductController::class, 'destroyCartItem']);
 
 
 Route::get('/cart', [ProductController::class, 'cart'])->middleware('auth');

@@ -94,6 +94,7 @@
     </style>
 </head>
 
+
 <body>
     <h1>Detalhes do Pedido #{{ $order->id }}</h1>
     <p>ID do Cliente: {{ $order->user_id }}</p>

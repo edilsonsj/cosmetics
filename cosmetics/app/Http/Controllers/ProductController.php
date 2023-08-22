@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use Illuminate\Support\Facades\DB;
-use App\Models\Cart;
+use App\Models\Cart;    
 use App\Models\Order;
 use App\Models\OrderProduct;
 
@@ -20,8 +20,8 @@ class ProductController extends Controller
             $query->where('product_category', $category);
         }
 
-        $products = $query->get();
-        $categories = DB::table('products')->select('product_category')->distinct()->get();
+        $products = $query->where('product_qty', '>', 0)->get();
+        $categories = DB::table('products')->select('product_category')->where('product_qty', '>', 0)->distinct()->get();
 
         return view('welcome', ['products' => $products, 'categories' => $categories]);
     }
@@ -117,6 +117,14 @@ class ProductController extends Controller
         return view('cart', ['products' => $products, 'user' => $user]);
     }
 
+    //Remover item do carrinho
+    public function destroyCartItem($product_id)
+    {
+        $user_id = auth()->user()->id;
+        Cart::where('user_id', $user_id)->where('product_id', $product_id)->delete();
+        return redirect('/cart')->with('msg', 'Produto deletado do carrinho com sucesso');
+    }
+
     public function finalizeOrder(Request $request)
     {
         // Verificar se o usuário está autenticado
@@ -184,5 +192,4 @@ class ProductController extends Controller
         // Redireciona de volta à página inicial com uma mensagem de sucesso
         return redirect()->route('products.index')->with('msg', 'Produto adicionado ao carrinho com sucesso!');
     }
-
 }

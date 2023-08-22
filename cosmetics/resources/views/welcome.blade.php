@@ -17,13 +17,13 @@
                         @csrf
                         <input type="hidden" name="product_id" value="{{ $product->id }}">
                         <input type="hidden" name="quantity" value="1">
-                        <button     type="submit" class="gallery__button">
-                          <i class='bx bx-cart'></i> 
-                          Adicionar ao carrinho
+                        <button type="submit" class="gallery__button">
+                            <i class='bx bx-cart'></i>
+                            Adicionar ao carrinho
                         </button>
                     </form>
                 </figcaption>
             </figure>
         @endforeach
 
-    @endsection
+@endsection
