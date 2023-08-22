@@ -16,11 +16,11 @@ return new class extends Migration
 
         
         
-        for($i = 0; $i < 20; $i++){
+        for($i = 0; $i < 19; $i++){
             
-            $userid = $this -> getRandomNumber(1, 20);
-            $productid = $this -> getRandomNumber(1, 20);
-            $qty = $this -> getRandomNumber(1, 5);
+            $userid = $this -> getRandomNumber(1, 19);
+            $productid = $this -> getRandomNumber(1, 18);
+            $qty = $this -> getRandomNumber(1, 3);
 
             DB::table('carts')->insert([
                 'user_id' => $userid,
