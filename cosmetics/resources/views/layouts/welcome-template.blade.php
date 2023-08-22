@@ -84,6 +84,30 @@
             font-size: 14px;
         }
 
+        .gallery__comment {
+            font-size: 18px;
+            font-family: 'Outfit', sans-serif;
+            flex-grow: 1;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            position: relative; /* Required for positioning the tooltip */
+        }
+        
+        .gallery__comment:hover::before {
+            content: attr(title);
+            position: absolute;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 5px;
+            border-radius: 5px;
+            z-index: 1;
+            width: max-content;
+            white-space: normal;
+            word-wrap: break-word;
+        }
+
+
         .gallery__price {
             font-size: 14px;
             font-weight: bold;
